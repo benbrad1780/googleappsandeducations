@@ -1,27 +1,236 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Games</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #16213e;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-brand {
+            font-size: 22px;
+            font-weight: bold;
+            color: #e94560;
+            margin-right: 40px;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: #0f3460;
+            color: #e0e0e0;
+            border: none;
+            padding: 10px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dropdown-toggle:hover {
+            background: #1a4a8a;
+        }
+
+        .dropdown-toggle .arrow {
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+
+        .dropdown.open .dropdown-toggle .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: #16213e;
+            border-radius: 8px;
+            min-width: 220px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .dropdown.open .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: background 0.2s;
+            font-size: 15px;
+        }
+
+        .dropdown-menu a:hover {
+            background: #0f3460;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 52px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e94560, #0f3460);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #a0a0b0;
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .game-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        .game-card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 30px 36px;
+            text-decoration: none;
+            color: #e0e0e0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            min-width: 200px;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(233, 69, 96, 0.3);
+        }
+
+        .game-card .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .game-card .name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: #16213e;
+            padding: 24px 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #a0a0b0;
+            border-top: 1px solid #0f3460;
+        }
+
+        footer a {
+            color: #e94560;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Games</h1>
-    <p>Welcome to my website.</p>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">Game Website</div>
+        <div class="dropdown" id="gamesDropdown">
+            <button class="dropdown-toggle" onclick="toggleDropdown()">
+                Games <span class="arrow">&#9660;</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="eagler.html">&#127918; Eaglercraft</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="main-title">Game Website</h1>
+        <p class="subtitle">Browse and play games from the dropdown menu above, or pick one below to jump right in.</p>
+        <div class="game-cards">
+            <a href="eagler.html" class="game-card">
+                <div class="icon">&#127918;</div>
+                <div class="name">Eaglercraft</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        If there are issues with any of the games, email me here:
+        <a href="mailto:ben.brad1780@gmail.com">ben.brad1780@gmail.com</a>
+    </footer>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById('gamesDropdown').classList.toggle('open');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            var dropdown = document.getElementById('gamesDropdown');
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+    </script>
+
 </body>
 </html>
-<a href="eagler.html">
-    <button style="
-        background: linear-gradient(135deg, #4CAF50, #2E7D32);
-        color: white;
-        border: none;
-        padding: 15px 35px;
-        font-size: 20px;
-        border-radius: 12px;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        transition: 0.3s;
-    "
-    onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.5)'"
-    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.3)'">
-        🎮 Play Eaglercraft
-    </button>
-</a>
